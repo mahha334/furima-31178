@@ -4,26 +4,24 @@
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
+| nickname           | string              | null: false             |
 | email              | string              | null: false             |
 | password           | string              | null: false             |
-| name               | string              | null: false             |
-| profile            | text                | null: false             |
-| occupation         | text                | null: false             |
-| position           | text                | null: false             |
+| Identification     | text                | null: false             | #本人確認        
+| birthday           | text                | null: false             | #生年月日
 
 ### Association
 
-* has_many :prototypes # テーブル同士を関連付ける
+* has_many :items # テーブル同士を関連付ける
 * has_many :comments
 
-## prototypes table
+## items table
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| title                               | string     | null: false       |
-| catch_copy                          | text       | null: false       |
-| concept                             | text       | null: false       |
-| user                                | references | foreign_key: true |
+| image                               | text       | null: false       |
+| text                                | text       | null: false       |
+| user_id                             | references | foreign_key: true |#外部キー
 
 ### Association
 
@@ -35,10 +33,43 @@
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | text        | text       | null: false       |
-| prototype   | references | foreign_key: true |
-| user        | references | foreign_key: true |
+| user_id     | references | foreign_key: true |
+| item_id     | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :prototype
+- belongs_to :item
 - belongs_to :user
+
+
+## koruny table #購入
+
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| price       | text       | null: false       |　＃販売価格
+| fee         | text       | null: false       |　＃手数料
+| profit      | text       | null: false       |　＃利益
+| user_id     | references | foreign_key: true |
+| item_id     | references | foreign_key: true |
+| comments_id | references | foreign_key: true |
+| hansom_id   | references | foreign_key: true |
+
+### Association
+
+- has_one :hansom
+- has_many :user
+- has_many :item
+- has_many :comments
+
+## hansom table #配送
+
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| deliveryfee | text       | null: false       | #配送料の負担
+| area        | text       | null: false       | #発送元の地域
+| shipping    | text       | null: false       | #発送までの日数
+| koruny_id   | references | foreign_key: true |
+
+### Association
+
+- belongs_to :koruny
