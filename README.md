@@ -15,17 +15,17 @@
 
 ### Association
 * has_many :items # テーブル同士を関連付ける
-* has_many :koruny
+* has_many :korunys
 
 
 ## items table
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| product                             | text       | null: false       | #商品名
+| product                             | string     | null: false       | #商品名
 | description                         | text       | null: false       | #商品の説明
 | category                            | integer    | null: false       | #カテゴリー
 | condition                           | integer    | null: false       | #商品の状態
-| price                               | text       | null: false       | #販売価格
+| price                               | integer    | null: false       | #販売価格
 | deliveryfee                         | integer    | null: false       | #配送料の負担
 | area                                | integer    | null: false       | #発送元の地域
 | koruny                              | references | foreign_key: true |
@@ -33,7 +33,7 @@
 
 ### Association
 - belongs_to :user
-- has_many :koruny
+- has_one :koruny
 
 
 ## koruny table #購入
@@ -53,7 +53,9 @@
 |-------------|------------|-------------------|
 | adress      | text       | null: false       | #住所（都道府県のみの入力）
 | koruny      | references | foreign_key: true |
+| item        | references | foreign_key: true |
+| user        | references | foreign_key: true |
+
 
 ### Association
 - belongs_to :koruny
-- has_one :item
