@@ -4,6 +4,7 @@
 ## users table
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
+| nickname           | string              | null: false             | #ニックネーム
 | surname            | string              | null: false             | #姓名
 | name               | string              | null: false             | #名前
 | surnamef           | string              | null: false             | #姓名（フリガナ）
@@ -22,18 +23,17 @@
 |-------------------------------------|------------|-------------------|
 | product                             | text       | null: false       | #商品名
 | description                         | text       | null: false       | #商品の説明
-| category                            | text       | null: false       | #カテゴリー
-| condition                           | text       | null: false       | #商品の状態
+| category                            | integer    | null: false       | #カテゴリー
+| condition                           | integer    | null: false       | #商品の状態
 | price                               | text       | null: false       | #販売価格
-| deliveryfee                         | text       | null: false       | #配送料の負担
-| area                                | text       | null: false       | #発送元の地域
-| shipping                            | text       | null: false       | #発送までの日数
+| deliveryfee                         | integer    | null: false       | #配送料の負担
+| area                                | integer    | null: false       | #発送元の地域
 | koruny                              | references | foreign_key: true |
 | user                                | references | foreign_key: true |#外部キー
 
 ### Association
 - belongs_to :user
-- has_one :koruny
+- has_many :koruny
 
 
 ## koruny table #購入
@@ -43,15 +43,17 @@
 | item        | references | foreign_key: true |
 
 ### Association
-- has_many :haisou
-- has_one :item
+- has_one :haisou
+- belongs_to :item
 - belongs_to :user
 
 
 ## haisou table #配送 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
+| adress      | text       | null: false       | #住所（都道府県のみの入力）
 | koruny      | references | foreign_key: true |
 
 ### Association
 - belongs_to :koruny
+- has_one :item
