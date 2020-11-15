@@ -48,7 +48,7 @@
 - belongs_to :user
 
 
-## deliverries table #配送 
+## deliveries table #配送 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | postcd      | string     | null: false       | #郵便番号
