@@ -1,24 +1,64 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## users table
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| nickname           | string              | null: false             | #ニックネーム
+| surname            | string              | null: false             | #姓名
+| name               | string              | null: false             | #名前
+| surnamef           | string              | null: false             | #姓名（フリガナ）
+| namef              | string              | null: false             | #名前（フリガナ）
+| email              | string              | null: false             |
+| encrypted_password | string              | null: false             |      
+| birthday           | date                | null: false             | #生年月日
 
-* Ruby version
+### Association
+* has_many :items 
+* has_many :purchases
 
-* System dependencies
 
-* Configuration
+## items table
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| product                             | string     | null: false       | #商品名
+| description                         | text       | null: false       | #商品の説明
+| category_id                         | integer    | null: false       | #カテゴリー
+| condition_id                        | integer    | null: false       | #商品の状態
+| price                               | integer    | null: false       | #販売価格（active_hash不使用）
+| deliveryfee_id                      | integer    | null: false       | #配送料の負担
+| area_id                             | integer    | null: false       | #発送元の地域
+| shipping_id                         | integer    | null: false       | #発送までの日数
+| user                                | references | foreign_key: true |#外部キー
 
-* Database creation
+### Association
+- belongs_to :user
+- has_one :purchase
 
-* Database initialization
 
-* How to run the test suite
+## purchases table #購入
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- has_one :delivery
+- belongs_to :item
+- belongs_to :user
 
-* Deployment instructions
 
-* ...
+## deliveries table #配送 
+| Column      | Type       | Options           |
+|-------------|------------|-------------------|
+| postcd      | string     | null: false       | #郵便番号
+| city        | string     | null: false       | #市区町村
+| addressj_id | integer    | null: false       | #都道府県
+| addressb    | string     | null: false       | #番地
+| building    | string     |                   | #建物名
+| phone       | string     | null: false       | #電話番号
+| purchase    | references | foreign_key: true |
+
+
+### Association
+- belongs_to :purchase
