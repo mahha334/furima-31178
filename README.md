@@ -36,7 +36,7 @@
 - has_one :koruny
 
 
-## korunys table #購入
+## purchases table #購入
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | user        | references | foreign_key: true |
@@ -48,13 +48,13 @@
 - belongs_to :user
 
 
-## haisous table #配送 
+## deliverys table #配送 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | postcd      | string     | null: false       | #郵便番号
 | city        | string     | null: false       | #市区町村
-| adresj_id   | integer    | null: false       | #都道府県
-| adresb      | string     | null: false       | #番地
+| addressj_id | integer    | null: false       | #都道府県
+| addressb    | string     | null: false       | #番地
 | building    | string     |                   | #建物名
 | phone       | string     | null: false       | #電話番号
 | koruny      | references | foreign_key: true |
