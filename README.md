@@ -15,7 +15,7 @@
 
 ### Association
 * has_many :items 
-* has_many :korunys
+* has_many :purchases
 
 
 ## items table
@@ -33,7 +33,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :koruny
+- has_one :purchase
 
 
 ## purchases table #購入
@@ -43,7 +43,7 @@
 | item        | references | foreign_key: true |
 
 ### Association
-- has_one :haisou
+- has_one :delivery
 - belongs_to :item
 - belongs_to :user
 
@@ -61,4 +61,4 @@
 
 
 ### Association
-- belongs_to :koruny
+- belongs_to :purchase
