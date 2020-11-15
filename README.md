@@ -15,7 +15,7 @@
 
 ### Association
 * has_many :items 
-* has_many :koruny
+* has_many :korunys
 
 
 ## items table
@@ -53,7 +53,7 @@
 |-------------|------------|-------------------|
 | postcd      | string     | null: false       | #郵便番号
 | city        | string     | null: false       | #市区町村
-| adresj      | string     | null: false       | #住所
+| adresj_id   | integer    | null: false       | #都道府県
 | adresb      | string     | null: false       | #番地
 | building    | string     |                   | #建物名
 | phone       | string     | null: false       | #電話番号
