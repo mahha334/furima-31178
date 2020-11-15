@@ -25,7 +25,7 @@
 | description                         | text       | null: false       | #商品の説明
 | category_id                         | integer    | null: false       | #カテゴリー
 | condition_id                        | integer    | null: false       | #商品の状態
-| price_id                            | integer    | null: false       | #販売価格
+| price                               | integer    | null: false       | #販売価格（active_hash不使用）
 | deliveryfee_id                      | integer    | null: false       | #配送料の負担
 | area_id                             | integer    | null: false       | #発送元の地域
 | shipping_id                         | integer    | null: false       | #発送までの日数
