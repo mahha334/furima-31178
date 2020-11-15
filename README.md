@@ -57,7 +57,7 @@
 | addressb    | string     | null: false       | #番地
 | building    | string     |                   | #建物名
 | phone       | string     | null: false       | #電話番号
-| koruny      | references | foreign_key: true |
+| purchase    | references | foreign_key: true |
 
 
 ### Association
