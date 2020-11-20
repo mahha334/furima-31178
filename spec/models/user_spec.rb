@@ -24,13 +24,21 @@ RSpec.describe User, type: :model do
     it "emailに「＠」が含まれないと登録できない" do
       @user.email = "kkkgmail.com"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email confirmation doesn't match Password")
-   end
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
+    it "emailが一意性である" do
+      @user.save
+      another_user = FactoryBot.build(:user, email: @user.email)
+      another_user.valid?
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
+    end
+
 
     it "passwordが空では登録できない" do
-       @user.email = nil
+       @user.password = nil
        @user.valid?
-       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
 
     it "passwordが6文字以上であれば登録できる" do
@@ -53,33 +61,23 @@ RSpec.describe User, type: :model do
        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
-    it "surnameが空では登録できない" do
-       @user.surname = nil
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Surname can't be blank")
+    it "surnameの値が存在すれば登録できる" do
+       expect(@user).to be_valid
     end
 
-    it "nameが空では登録できない" do
-       @user.name = nil
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Name can't be blank")
+    it "nameの値が存在すれば登録できる" do
+       expect(@user).to be_valid
     end
-    it "surnamefが空では登録できない" do
-       @user.surname = nil
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Surnamef can't be blank")
+    it "surnamefの値が存在すれば登録できる" do
+       expect(@user).to be_valid
     end
 
-    it "namefが空では登録できない" do 
-       @user.namef = nil
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Namef can't be blank")
+    it "namefの値が存在すれば登録できる" do 
+       expect(@user).to be_valid
     end
 
-    it "birthdayが空では登録できない" do 
-       @user.birthday = nil
-       @user.valid?
-       expect(@user.errors.full_messages).to include("Birthday can't be blank")
+    it "birthdayの値が存在すれば登録できる" do 
+       expect(@user).to be_valid
     end
   end
 end
