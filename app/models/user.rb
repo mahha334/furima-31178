@@ -3,13 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :nickname, presence: true 
-  validates :surname, presence: true 
-  validates :name, presence: true 
-  validates :surnamef, presence: true 
-  validates :namef, presence: true 
-  validates :birthday, presence: true 
-
+  with_options presence: true do
+    # ニックネーム・生年月日はオプション必要ないのでこのままの設定。
+    validates :nickname, :birthday, presence: true
+    # この項目は統一ルールなのでまとめた設定 
+    validates :name, :surname, :surnamef, :namef, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input full-width characters."}
+  end
   has_many :items 
   has_many :purchases
 end

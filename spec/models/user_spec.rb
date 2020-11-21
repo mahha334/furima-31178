@@ -62,6 +62,35 @@ RSpec.describe User, type: :model do
        @user.valid?
        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
+  it "surnameが空では登録できない" do
+    @user.surname = nil
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Surname can't be blank")
+   end
+
+   it "nameが空では登録できない" do
+    @user.name = nil
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Name can't be blank")
+   end
+   it "surnamefが空では登録できない" do
+    @user.surnamef = nil
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Surnamef can't be blank")
+   end
+
+   it "namefが空では登録できない" do 
+    @user.namef = nil
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Namef can't be blank")
+   end
+
+   it "birthdayが空では登録できない" do 
+    @user.birthday = nil
+    @user.valid?
+    expect(@user.errors.full_messages).to include("Birthday can't be blank")
+   end
+
   end
  end
 end
