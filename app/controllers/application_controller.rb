@@ -1,7 +1,17 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth
 
+  before_action :basic_auth, if: :production?                                # ７行目とセット：ヘルパーメソッド
+  before_action :configure_permitted_parameters, if: :devise_controller?            #12行目とセット：ストロングパラメーター
+  
   private
+
+  def production?                                                            # 2行目とセット：BASIC認証のため
+    Rails.env.production?
+  end
+
+  def configure_permitted_parameters                                                #4行目とセット：ストロングパラメーター
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :surname, :name, :surnamef, :namef, :birthday])
+  end
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
