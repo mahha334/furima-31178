@@ -31,7 +31,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+<<<<<<< Updated upstream
 gem 'rspec-rails'
+=======
+  gem 'rspec-rails'
+>>>>>>> Stashed changes
   gem 'factory_bot_rails'
   gem 'faker'
 end
@@ -62,4 +66,11 @@ group :production do
   gem 'rails_12factor'
 end
 gem 'pry-rails'
+<<<<<<< Updated upstream
 gem 'devise'
+=======
+gem 'devise'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'active_hash'
+>>>>>>> Stashed changes
