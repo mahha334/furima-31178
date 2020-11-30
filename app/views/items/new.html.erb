@@ -5,21 +5,11 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-<<<<<<< Updated upstream
-    <%= form_with local: true do |f| %>
-
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-
-    <%# 出品画像 %>
-=======
 
     <%# エラー発生時にメッセージが表示されるようにした。%>
     <%= form_with model: @item, local: true do |f| %>
       <%= render 'shared/error_messages', model: @item %>
       
->>>>>>> Stashed changes
     <div class="img-upload">
       <div class="weight-bold-text">
         出品画像
@@ -29,48 +19,28 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-<<<<<<< Updated upstream
-        <%= f.file_field :hoge, id:"item-image" %>
-      </div>
-    </div>
-    <%# /出品画像 %>
-    <%# 商品名と商品説明 %>
-=======
         <%= f.file_field :item, id:"item-image" %><%# 出品画像アド追加部分 %>
       </div>
     </div>
 
     <%# 商品名と商品説明 名前の修正有 %>
->>>>>>> Stashed changes
     <div class="new-items">
       <div class="weight-bold-text">
         商品名
         <span class="indispensable">必須</span>
       </div>
-<<<<<<< Updated upstream
-      <%= f.text_area :hoge, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
-=======
       <%= f.text_area :product, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
->>>>>>> Stashed changes
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
           <span class="indispensable">必須</span>
         </div>
-<<<<<<< Updated upstream
-        <%= f.text_area :hoge, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
-=======
         <%= f.text_area :description, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
->>>>>>> Stashed changes
       </div>
     </div>
     <%# /商品名と商品説明 %>
 
-<<<<<<< Updated upstream
-    <%# 商品の詳細 %>
-=======
     <%# 商品の詳細 名前の修正有 %>
->>>>>>> Stashed changes
     <div class="items-detail">
       <div class="weight-bold-text">商品の詳細</div>
       <div class="form">
@@ -78,23 +48,14 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-<<<<<<< Updated upstream
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %>
-=======
         <%# f.collection_select(カラム名, 要素の配列, value属性の項目, テキストの項目, { オプション }, { HTMLオプション } %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
->>>>>>> Stashed changes
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-<<<<<<< Updated upstream
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-sales-status"}) %>
-      </div>
-=======
         <%= f.collection_select(:condition_id, Condition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>  
->>>>>>> Stashed changes
     </div>
     <%# /商品の詳細 %>
 
@@ -108,20 +69,6 @@
         <div class="weight-bold-text">
           配送料の負担
           <span class="indispensable">必須</span>
-<<<<<<< Updated upstream
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-        <div class="weight-bold-text">
-          発送元の地域
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-prefecture"}) %>
-        <div class="weight-bold-text">
-          発送までの日数
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
-=======
         </div>                             
         <%= f.collection_select(:deliveryfee_id, Deliveryfee.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
@@ -134,7 +81,6 @@
           <span class="indispensable">必須</span>
         </div>                                 
         <%= f.collection_select(:shipping_id, Shipping.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
->>>>>>> Stashed changes
       </div>
     </div>
     <%# /配送について %>
@@ -152,11 +98,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-<<<<<<< Updated upstream
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
-=======
           <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
->>>>>>> Stashed changes
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>

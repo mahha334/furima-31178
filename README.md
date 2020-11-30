@@ -23,7 +23,7 @@
 |-------------------------------------|------------|-------------------|
 | product                             | string     | null: false       | #商品名
 | description                         | text       | null: false       | #商品の説明
-| category_id                         | integer    | null: false       | #カテゴリー
+|category_id                          | integer    | null: false       | #カテゴリー  
 | condition_id                        | integer    | null: false       | #商品の状態
 | price                               | integer    | null: false       | #販売価格（active_hash不使用）
 | deliveryfee_id                      | integer    | null: false       | #配送料の負担

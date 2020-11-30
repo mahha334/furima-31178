@@ -10,9 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(version: 2020_11_17_065830) do
-=======
 ActiveRecord::Schema.define(version: 2020_11_22_012237) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -35,18 +32,13 @@ ActiveRecord::Schema.define(version: 2020_11_22_012237) do
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
->>>>>>> Stashed changes
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "product", null: false
     t.text "description", null: false
     t.integer "category_id", null: false
     t.integer "condition_id", null: false
-<<<<<<< Updated upstream
-    t.integer "nprice", null: false
-=======
     t.integer "price", null: false
->>>>>>> Stashed changes
     t.integer "deliveryfee_id", null: false
     t.integer "area_id", null: false
     t.integer "shipping_id", null: false
@@ -74,9 +66,6 @@ ActiveRecord::Schema.define(version: 2020_11_22_012237) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-<<<<<<< Updated upstream
-=======
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
->>>>>>> Stashed changes
   add_foreign_key "items", "users"
 end

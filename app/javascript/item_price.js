@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
   const priceInput = document.getElementById("item-price")        //金額を入力する場所のid
-  priceInput.addEventListener("input", () => {
+  priceInput.addEventListener('input', () => {
     const inputValue = priceInput.value;
 
     const addTaxDom = document.getElementById("add-tax-price");   //手数料を表示する場所のid

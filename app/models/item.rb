@@ -1,11 +1,5 @@
 class Item < ApplicationRecord
-<<<<<<< Updated upstream
-  belongs_to :user
-  has_one :purchase
 
-  validates :title, presence: true
-end
-=======
 
   extend ActiveHash::Associations::ActiveRecordExtensions
 
@@ -43,4 +37,4 @@ with_options presence: true do
       validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
 end
 
->>>>>>> Stashed changes
+
