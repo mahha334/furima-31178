@@ -1,18 +1,20 @@
 FactoryBot.define do
   factory :item do
-    product {”商品名”}
-    description {”商品の説明”}
-    category_id {”カテゴリー”}
-    condition_id {”商品の状態”}
-    price {”販売価格”}
-    deliveryfee_id {”配送料の負担”}
-    area_id {”発送元の地域”}
-    shipping_id {”発送までの日数”}
+
+    product {Faker::Name.name}  # これ以外はダブっても大丈夫
+    description {"商品の説明"}
+    category_id {1} # プルダウンなので番号指定（共通の数字）
+    condition_id {1}
+    price {300}
+    deliveryfee_id {1}
+    area_id {1}
+    shipping_id {1}
     
     association :user
-
-    after(:build) do |item|
-      item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    
+    after(:build) do |item|	
+      item.item_image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')	
     end
+
   end
 end
