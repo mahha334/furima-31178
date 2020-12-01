@@ -20,6 +20,8 @@ with_options presence: true do
       validates :price 
       validates :product
       validates :description
+      validates :item_image
+
  end
 
   # プルダウンの選択で「--」の時は保存できないようにする
@@ -34,7 +36,7 @@ with_options presence: true do
   # 半角英数の設定 
       validates :price, format: { with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input full-width Half-width alphanumeric."}
   # 入力範囲の設定 
-      validates :price, numericality: { only_integer: true, greater_than: 300, less_than: 9999999}
+      validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000}
 end
 
 

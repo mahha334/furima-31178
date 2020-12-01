@@ -1,41 +1,50 @@
 require 'rails_helper'
 RSpec.describe Item, type: :model do
-  describe '商品出品' do
+ describe '商品出品' do
+
     before do
       @item = FactoryBot.build(:item)
     end
 
   context '商品出品保存できる時' do
-    it "priceが空でなければ登録できる" do
-      @item.price = 500
+
+    it "すべての情報が正しいフォーマットで入力されていれば出品できる" do
       expect(@item).to be_valid
    end
-
-    it "descriptionが空でなければ登録できる" do
-      @item.description = @item.description
-       expect(@item).to be_valid
-  end
-
-    it "productが空でなければ登録できる" do
-      @item.product = @item.product
-      expect(@item).to be_valid
- end
 
   end
 
   context '商品出品保存できない時' do
+
     it "priceが空では登録できない" do
       @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
 
-
-    it "productが空では登録できない" do
-      @item.product = nil
+    it "priceが299以下だと登録できない" do
+      @item.price = 299
       @item.valid?
-      expect(@item.errors.full_messages).to include("Product can't be blank")
+      expect(@item.errors.full_messages).to include("Price must be greater than 299")
+    end
+
+    it "priceが10,000,000以上だと登録できない" do
+      @item.price = 10000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be less than 10000000")
+    end
+
+    it "priceが数字以外では登録できない" do
+      @item.price = ("＠")
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
      end
+
+     it "imageが空だと登録できない" do
+       @item.item_image = nil
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Item image can't be blank")
+      end
 
      it "descriptionが空では登録できない" do
       @item.description = nil
@@ -78,6 +87,8 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
      end
+
   end
+
  end
 end
