@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+# 記事の一覧、詳細を確認することができるのはログインユーザーのみ
 
   def index # 一覧表示:降順(DESC)並び替え
     @items = Item.all.order("created_at DESC")
@@ -18,16 +19,16 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def show
-  #  @item = Item.find(params[:id])
-  #end
+  def show
+    @item = Item.find(params[:id])
+  end
 
-  #def edit
-  #  @item = Items.find(params[:id])
-  #  unless current_user == @item.user
-  #    redirect_to root_path
-  #  end
-  #end
+  def edit
+    @item = Items.find(params[:id])
+    unless current_user == @item.user
+      redirect_to root_path
+    end
+  end
 
   #def update
   #  @item = Item.find(params[:id])
