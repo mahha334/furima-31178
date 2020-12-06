@@ -145,6 +145,8 @@
   background-color: #fff;
   margin: 5vh 0;
   text-align: center;
+  min-width: 500px;
+  padding: 30px;
 }
 
 .comment-text {

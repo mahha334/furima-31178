@@ -132,7 +132,7 @@
 
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id), method: :get do %>  <%# 自分の出品物あるなら編集・削除可能画面へ %>
           <div class='image-content'>                                 <%# 画像 %>
           <%= image_tag item.item_image, class: "item-img" %>
 
@@ -163,7 +163,7 @@
       <%# 商品がない場合のダミー %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
-        <%= link_to '#' do %>
+        <%= link_to @item_show, method: :get do %>  <%# 自分の出品物ないなら購入画面へ %>
         <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -181,10 +181,9 @@
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# /商品がない場合のダミー %>
-    </ul>
+    <%# /商品一覧 %>
+   <% end %>
   </div>
-  <%# /商品一覧 %>
- <% end %>
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
