@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 # 記事の一覧、詳細を確認することができるのはログインユーザーのみ
+  before_action :set_item, only: [:show, :edit, :update]
+# before_actionによって、アクションを起こす前にset_itemメソッドで同じプログラムをまとめた物を実行する  
 
   def index # 一覧表示:降順(DESC)並び替え
     @items = Item.all.order("created_at DESC")
@@ -20,18 +22,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+   
   end
 
   def edit
-    @item = Item.find(params[:id])
+    
     unless current_user == @item.user
      redirect_to root_path
     end
   end
 
   def update
-    @item = Item.find(params[:id])
+    
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
@@ -46,9 +48,13 @@ class ItemsController < ApplicationController
   #end
 
   private
-
+  
   def item_params # このテーブルにこれらのキーを保存：セキュリティに関わる考え
     params.require(:item).permit(:product, :price, :description, :category_id, :condition_id, :deliveryfee_id, :area_id, :shipping_id, :item_image).merge(user_id: current_user.id)
+  end
+
+  def set_item # before_actionで上にまとめたメソッドの定義を記載
+    @item = Item.find(params[:id])
   end
   
 end
