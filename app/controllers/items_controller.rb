@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
 
   def destroy # 挙動確認はほぼできない部分：URL直接入力しても反応しない制御をつける部分
 
-    if current_user.id = @item.user_id
+    if current_user.id == @item.user_id
        @item.destroy
        redirect_to root_path
     else
