@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 # 記事の一覧、詳細を確認することができるのはログインユーザーのみ
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 # before_actionによって、アクションを起こす前にset_itemメソッドで同じプログラムをまとめた物を実行する  
 
   def index # 一覧表示:降順(DESC)並び替え
@@ -41,10 +41,14 @@ class ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    item = Item.find(params[:id])
-    item.destroy
-    redirect_to root_path
+  def destroy # 挙動確認はほぼできない部分：URL直接入力しても反応しない制御をつける部分
+
+    if current_user.id = @item.user_id
+       @item.destroy
+       redirect_to root_path
+    else
+       render :show
+    end
   end
 
   private
