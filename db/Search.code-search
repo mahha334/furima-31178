@@ -1,0 +1,7 @@
+# Query: addressj_id
+# Flags: WordMatch
+
+1 件の結果 - 1 ファイル
+
+db/schema.rb:
+  39:     t.integer "area_id", null: false

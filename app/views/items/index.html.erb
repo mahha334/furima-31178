@@ -136,11 +136,22 @@
           <div class='image-content'>                                 <%# 画像 %>
           <%= image_tag item.item_image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>        <%# 修正は最後の単元で行う %>
+<%# 追加実装部分 %>
+          <%# 商品が売れていればsold outを表示しましょう %> 
+          <%# if 'ユーザーがログインしているかどうか' %>
+          <%# if '商品詳細画面にアクセスしたユーザーが出品者かどうか' %>
+          <%#  商品編集削除ボタン %>
+          <%# elsif '商品が出品中かどうか' %>
+          <%#  商品購入ボタン %>
+          <%# end %>
+          <%# end %>
+          <%# if '商品が購入済み' %>
            <%#div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
+          <% end %>
+          <%# //商品が売れていればsold outを表示しましょう #%>
+<%# // 追加実装部分 %>
 
         </div>
         <div class='item-info'>

@@ -8,11 +8,19 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag "item-sample.png" ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>  
-      <%#<div class='sold-out'>
+
+<%# 追加実装部分 %>
+      <%# 商品が売れている場合は、sold outを表示しましょう %> 
+      <%# if user_signed_in? %>
+      <%# elsif '商品が出品中かどうか==>購入済みで表示' %>
+      <%# end %>
+      <%# end %>
+      <%#div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <%# 商品が売れている場合は、sold outを表示しましょう #%>
+<%# // 追加実装部分 %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -38,7 +46,7 @@
    <% else %>
    <%# ログイン者が商品出品者と同じ場合 ==> 購入できない ＝ 閲覧のみ、それ以外は購入できる %>
     <%# 商品が売れていない場合はこちらを表示しましょう %><%# ログイン者の出品商品以外を選択した場合 ==> 購入画面へ%>
-    <%= link_to '購入画面に進む', "#", method: :get ,class:"item-red-btn"%>
+    <%= link_to '購入画面に進む',  item_purchases_path(@item.id), method: :get ,class:"item-red-btn"%>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
    <% end %>
   <% end %>
