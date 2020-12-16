@@ -14,6 +14,8 @@ class  UserPurchase # 手順1.
       validates :area_id
       validates :addressb
       validates :phone
+      validates :user_id  # 追加部分
+      validates :item_id  # 追加部分
     end
  # プルダウン（商品の地域＝都道府県）の選択で「--」の時は保存できないようにする
       validates :area_id, numericality: { other_than: 0 }
@@ -29,6 +31,6 @@ class  UserPurchase # 手順1.
     # 配送先の情報を保存
     Delivery.create(postcd: postcd, city: city, area_id: area_id, addressb: addressb, building: building, phone: phone)
     # 購入の情報を保存
-    Purchase.create(user_id: user_id, item_id: item_id)
+    Purchase.create(user_id: user_id, item_id: item_id)  # これだけでは空でも保存できてしまう。
   end
 end
