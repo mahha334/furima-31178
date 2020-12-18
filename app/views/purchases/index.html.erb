@@ -44,8 +44,8 @@
         <div class='form-text-wrap'>
           <label class="form-text">カード情報</label>
           <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_field 'hoge', class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+        </div>           <%# hoge -> number %>
+        <%= f.text_field 'number', class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
         <div class='available-card'>
           <%= image_tag 'card-visa.gif', class: 'card-logo'%>
           <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
@@ -59,18 +59,18 @@
           <span class="indispensable">必須</span>
         </div>
         <div class='input-expiration-date-wrap'>
-          <%= f.text_area 'hoge', class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
-          <p>月</p>
-          <%= f.text_area 'hoge', class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
-          <p>年</p>
+          <%= f.text_area 'exp-month', class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
+          <p>月</p>  <%# hoge -> exp-montr %>
+          <%= f.text_area 'exp-year', class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
+          <p>年</p>  <%# hoge -> exp-year %>
         </div>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
-        </div>
-        <%= f.text_field "hoge",class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        </div>  <%# hoge -> cvc %>
+        <%= f.text_field "cvc",class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
     <%# /カード情報の入力 %>

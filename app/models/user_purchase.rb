@@ -3,7 +3,7 @@ class  UserPurchase # 手順1.
  include ActiveModel::Model # 手順2.
 
  # 手順3.保存したい複数のテーブルのカラム名全て
-  attr_accessor :postcd, :city, :area_id, :addressb, :building, :phone, :user_id, :item_id
+  attr_accessor :postcd, :city, :area_id, :addressb, :building, :phone, :user_id, :item_id, :token
   
  # 手順4. 配送のバリデーションの処理
  # 共通したオプションをまとめる記述
@@ -16,6 +16,7 @@ class  UserPurchase # 手順1.
       validates :phone
       validates :user_id  # 追加部分
       validates :item_id  # 追加部分
+      validates :token  # 追加部分
     end
  # プルダウン（商品の地域＝都道府県）の選択で「--」の時は保存できないようにする
       validates :area_id, numericality: { other_than: 0 }

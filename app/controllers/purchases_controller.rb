@@ -13,6 +13,7 @@ class PurchasesController < ApplicationController
 
     @user_purchase = UserPurchase.new(user_purchase_params)
     if @user_purchase.valid?
+      pay_item
       @user_purchase.save
       redirect_to item_path(@item)   # 保存可=>商品一覧トップページに戻る
     else
@@ -33,15 +34,23 @@ class PurchasesController < ApplicationController
   end
    
     private
-  
      
   def user_purchase_params  # 購入と配送のストロングパラメーターを1つに統合
     # params.require(:モデル名).permit(:配送カラム).merge（外部キー：商品情報）
-     params.require(:user_purchase).permit(:postcd, :city, :area_id, :addressb, :building, :phone).merge(item_id: params[:item_id])
+     params.require(:user_purchase).permit(:postcd, :city, :area_id, :addressb, :building, :phone).merge(token: params[:token])
   end
 
   def set_item # before_actionで上にまとめたメソッドの定義を記載
     @item = Item.find(params[:item_id])
   end
-  
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述 ⇨ 秘密鍵代入した環境変数を呼び込めるように修正
+    Payjp::Charge.create(
+      amount: order_params[:price],  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+    )
+  end
+
 end

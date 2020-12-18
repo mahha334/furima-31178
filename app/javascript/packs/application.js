@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("@rails/activestorage").start()
+//require("@rails/activestorage").start()// コメントアウトする
 require("channels")
 require("../item_price");   //JavaScriptファイルの読み込み
 
