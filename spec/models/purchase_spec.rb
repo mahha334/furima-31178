@@ -55,6 +55,12 @@ RSpec.describe UserPurchase, type: :model do
        expect(@user_purchase.errors.full_messages).to include("Area must be other than 0")
       end
  
+      it "tokenが空では登録できないこと" do
+        @user_purchase.token = nil
+        @user_purchase.valid?
+        expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+
     end
   end
 end

@@ -5,6 +5,8 @@ FactoryBot.define do
     addressb  {"青山1−1−1"} 
     phone   {12345678912} # 11桁以内
     area_id {1}          # プルダウンなので番号指定（共通の数字）
+    token {"tok_abcdefghijk00000000000000000"}
+  
 
     end
 end
