@@ -3,7 +3,7 @@ class  UserPurchase # 手順1.
  include ActiveModel::Model # 手順2.
 
  # 手順3.保存したい複数のテーブルのカラム名全て
-  attr_accessor :postcd, :city, :area_id, :addressb, :building, :phone, :user_id, :item_id, :token
+  attr_accessor :postcd, :city, :area_id, :addressb, :building, :phone, :purchase, :user_id, :item_id, :token
   
  # 手順4. 配送のバリデーションの処理
  # 共通したオプションをまとめる記述
@@ -28,10 +28,11 @@ class  UserPurchase # 手順1.
       validates :phone, format: {with: /\A[0-9]{11}\z/, message: "is invalid. Include nothyphen & <= 11"}
       
 
-  def save  # 手順5. データを保存する処理を書く
-    # 配送先の情報を保存
-    Delivery.create(postcd: postcd, city: city, area_id: area_id, addressb: addressb, building: building, phone: phone)
+  def save  # 手順5. データを保存する処理を書く（ER図設計に基づいて記述順番を考える事必須）
     # 購入の情報を保存
-    Purchase.create(user_id: user_id, item_id: item_id)  # これだけでは空でも保存できてしまう。
+    kounyu = Purchase.create(user_id: user_id, item_id: item_id)  # これだけでは空でも保存できてしまう。
+    # 配送先の情報を保存
+    Delivery.create(postcd: postcd, city: city, area_id: area_id, addressb: addressb, building: building, phone: phone, purchase_id: kounyu.id)
+    
   end
 end

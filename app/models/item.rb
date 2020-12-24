@@ -17,7 +17,7 @@ with_options presence: true do
       validates :price 
       validates :product
       validates :description
-      validates :item_image
+      validates :image
     end
 # プルダウンの選択で「--」の時は保存できないようにする
 with_options numericality: { other_than: 0 }  do
@@ -34,7 +34,7 @@ with_options numericality: { other_than: 0 }  do
   
 
   has_one :purchase
-  has_one_attached :item_image # アクティブストレージ（拡張子以外のファイル名のみ指定）
+  has_one_attached :image # アクティブストレージ（拡張子以外のファイル名のみ指定）
   
 end
 

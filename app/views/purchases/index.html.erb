@@ -10,7 +10,7 @@
       <%= image_tag "item-sample.png", class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= "商品名" %>
+          <%= @item.product %>
         </h2>
         <div class='buy-item-price'>
           <p class='item-price-text'>¥<%=  @item.price %></p>
@@ -45,7 +45,7 @@
           <label class="form-text">カード情報</label>
           <span class="indispensable">必須</span>
         </div>           <%# hoge -> number %>
-        <%= f.text_field 'number', class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+        <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
         <div class='available-card'>
           <%= image_tag 'card-visa.gif', class: 'card-logo'%>
           <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
@@ -59,10 +59,10 @@
           <span class="indispensable">必須</span>
         </div>
         <div class='input-expiration-date-wrap'>
-          <%= f.text_area 'exp-month', class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
-          <p>月</p>  <%# hoge -> exp-montr %>
-          <%= f.text_area 'exp-year', class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
-          <p>年</p>  <%# hoge -> exp-year %>
+          <%= f.text_area :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)3" %>
+          <p>月</p>  <%# hoge -> exp_montr %>
+          <%= f.text_area :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)23" %>
+          <p>年</p>  <%# hoge -> exp_year %>
         </div>
       </div>
       <div class="form-group">
@@ -70,7 +70,7 @@
           <label class="form-text">セキュリティコード</label>
           <span class="indispensable">必須</span>
         </div>  <%# hoge -> cvc %>
-        <%= f.text_field "cvc",class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
       </div>
     </div>
     <%# /カード情報の入力 %>
