@@ -15,6 +15,12 @@ RSpec.describe UserPurchase, type: :model do
       it "すべての情報が正しいフォーマットで入力されていれば購入できる" do
        expect(@user_purchase).to be_valid
       end 
+
+      it "buildingは空でも購入できる" do
+        @user_purchase.building = nil
+       expect(@user_purchase).to be_valid
+      end 
+
     end
  
 
@@ -49,6 +55,18 @@ RSpec.describe UserPurchase, type: :model do
        expect(@user_purchase.errors.full_messages).to include("Addressb can't be blank")
       end
  
+      it "phoneが空では登録できない" do  
+        @user_purchase.phone = nil
+        @user_purchase.valid?
+       expect(@user_purchase.errors.full_messages).to include("Phone can't be blank")
+      end
+ 
+      it "postcdが空では登録できない" do  
+        @user_purchase.postcd = nil
+        @user_purchase.valid?
+       expect(@user_purchase.errors.full_messages).to include("Postcd can't be blank")
+      end
+ 
       it "area_idが0では登録できない" do  
         @user_purchase.area_id = 0
         @user_purchase.valid?
@@ -59,6 +77,18 @@ RSpec.describe UserPurchase, type: :model do
         @user_purchase.token = nil
         @user_purchase.valid?
         expect(@user_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが紐付いていないと保存できないこと' do 
+        @user_purchase.user_id = nil
+        @user_purchase.valid?
+       expect(@user_purchase.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが紐付いていないと保存できないこと' do 
+        @user_purchase.item_id = nil
+        @user_purchase.valid?
+       expect(@user_purchase.errors.full_messages).to include("Item can't be blank")
       end
 
     end
