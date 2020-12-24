@@ -25,7 +25,7 @@ RSpec.describe UserPurchase, type: :model do
        expect(@user_purchase.errors.full_messages).to include("City can't be blank")
      end
 
-     it "postcdが「-」を含む且つ7桁以外だと登録できない" do   ##############
+     it "postcdが「-」を含む且つ7桁以外だと登録できない" do   
        @user_purchase.postcd = ("/\A\d{3}[-]\d{4}\z/")
        @user_purchase.valid?
        expect(@user_purchase.errors.full_messages).to include("Postcd is invalid. Include hyphen(-)")
