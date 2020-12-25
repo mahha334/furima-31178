@@ -78,7 +78,7 @@
     </p>
     <div class='store-btn'>
       <%= link_to image_tag("https://linkmaker.itunes.apple.com/ja-jp/badge-lrg.svg?releaseDate=2011-09-21&kind=iossoftware&bubble=ios_apps", class:"apple-btn"), "#" %>
-      <%= link_to image_tag("dl-android.png", class:"google-btn"), "item_image" %>
+      <%= link_to image_tag("dl-android.png", class:"google-btn"), "image" %>
     </div>
   </div>
   <%# /画面中央の「会員数日本一位」帯部分 %>
@@ -124,26 +124,27 @@
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
-
-    
     <ul class='item-lists'>  
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-   <% if @items.present? %>
 
-      <% @items.each do |item| %>
-      <li class='list'>
-        <%= link_to item_path(item.id), method: :get do %>  <%# 自分の出品物あるなら編集・削除可能画面へ %>
-          <div class='image-content'>                                 <%# 画像 %>
-          <%= image_tag item.item_image, class: "item-img" %>
 
-          <%# 商品が売れていればsold outを表示しましょう %>        <%# 修正は最後の単元で行う %>
-           <%#div class='sold-out'>
+     <% if @items.present? %>    <%# 商品が存在してる？：ダミー画像の分岐文 %>
+      <% @items.each do |item| %>    <%# 商品が存在＝商品を表示 %>
+      <li class='list'> 
+      <%= link_to item_path(item.id), method: :get do %>  <%# 自分の出品物あるなら編集・削除可能画面へ %> 
+           <div class='image-content'>                                 <%# 画像 %>
+           <%= image_tag item.image, class: "item-img" %>
+          <%#「もし選択した商品に紐づく購入記録が存在していたら（空ではなかったら）%> 
+          <%# 商品が売れていればsold outを表示しましょう %> 
+          <% if item.purchase.present? %>    
+           <div class='sold-out'>
             <span>Sold Out!!</span>
-          </div>
+           </div>
+          <% end %>  
+          </div>     <%# 商品が売れてるなら %>
           <%# //商品が売れていればsold outを表示しましょう %>
-
-        </div>
-        <div class='item-info'>
+          <%# ====================== 修正必要箇所終わりの行================================== %>
+          <div class='item-info'>
           <h3 class='item-name'>
             <%= item.product %>                                             <%# 商品名 %>
           </h3>
@@ -156,10 +157,10 @@
           </div>
         </div>
         <% end %>
-      </li>
-    <% end %>
+       </li>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-    <% else %>
+        <% end %>                                                      <%# 最初の do の終わり分 %>
+     <% else %>                                                       <%# 最初の if の中間分 %>
       <%# 商品がない場合のダミー %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
@@ -177,13 +178,14 @@
             </div>
           </div>
         </div>
-        <% end %>
+        <% end %>                                                  <%# ２個目の do の終わり分 %>
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# /商品がない場合のダミー %>
-    <%# /商品一覧 %>
-   <% end %>
+     <% end %> 
+    </ul>                                                      <%# 最初の if の終わり分 %>
   </div>
+     <%# /商品一覧 %>
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>

@@ -22,10 +22,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
+    
   end
 
-  def edit
+  def edit 
+      # 「商品に紐付いた購入履歴があったらトップページに遷移する」という条件もeditアクションに追加しましょう。
+    if item.purchase.present?    
+      redirect_to root_path     
+    end       
     
     unless current_user == @item.user
      redirect_to root_path
@@ -54,7 +58,7 @@ class ItemsController < ApplicationController
   private
   
   def item_params # このテーブルにこれらのキーを保存：セキュリティに関わる考え
-    params.require(:item).permit(:product, :price, :description, :category_id, :condition_id, :deliveryfee_id, :area_id, :shipping_id, :item_image).merge(user_id: current_user.id)
+    params.require(:item).permit(:product, :price, :description, :category_id, :condition_id, :deliveryfee_id, :area_id, :shipping_id, :image).merge(user_id: current_user.id)
   end
 
   def set_item # before_actionで上にまとめたメソッドの定義を記載
