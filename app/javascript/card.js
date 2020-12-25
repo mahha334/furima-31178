@@ -18,7 +18,7 @@ const pay = () => {
     exp_month: formData.get("user_purchase[exp_month]"),         
     exp_year: `20${formData.get("user_purchase[exp_year]")}`,    
   };
-console.log(card)
+  
 // カードの情報をトークン化  
   Payjp.createToken(card, (status, response) => {
     if (status == 200) {
