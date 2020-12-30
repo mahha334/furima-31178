@@ -56,7 +56,8 @@ class PurchasesController < ApplicationController
   def move_to_purchase 
                    #         やりたいこと：単純にログインした状態で、売却済み商品URLを入力 -> トップページ
                     
-       if user_signed_in? # ログインしているなら 
+       if user_signed_in? && @item.purchase.present? # ログインしている＆売却済み商品選択 
+         
          redirect_to root_path                      # トップページ
        end  
    

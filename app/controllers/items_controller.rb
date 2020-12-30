@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
 
   def edit 
       # 「商品に紐付いた購入履歴があったらトップページに遷移する」という条件もeditアクションに追加しましょう。
-    if item.purchase.present?    
+    if @item.purchase.present?    
       redirect_to root_path     
     end       
     
