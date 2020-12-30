@@ -10,7 +10,9 @@
     <%= form_with model: @item, local: true do |f| %>
       <%= render 'shared/error_messages', model: @item %>
       
-    <div class="img-upload">
+
+    <div class="items-img-upload">
+
       <div class="weight-bold-text">
         出品画像
         <span class="indispensable">必須</span>
@@ -19,7 +21,9 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :item, id:"item-image" %><%# 出品画像アド追加部分 %>
+
+        <%= f.file_field :image, id:"item-image" %><%# 出品画像アド追加部分 %>
+
       </div>
     </div>
 

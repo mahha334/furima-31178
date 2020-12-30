@@ -23,7 +23,7 @@
 |-------------------------------------|------------|-------------------|
 | product                             | string     | null: false       | #商品名
 | description                         | text       | null: false       | #商品の説明
-| category_id                         | integer    | null: false       | #カテゴリー
+| category_id                         | integer    | null: false       | #カテゴリー  
 | condition_id                        | integer    | null: false       | #商品の状態
 | price                               | integer    | null: false       | #販売価格（active_hash不使用）
 | deliveryfee_id                      | integer    | null: false       | #配送料の負担
@@ -53,7 +53,7 @@
 |-------------|------------|-------------------|
 | postcd      | string     | null: false       | #郵便番号
 | city        | string     | null: false       | #市区町村
-| addressj_id | integer    | null: false       | #都道府県
+| area_id     | integer    | null: false       | #都道府県
 | addressb    | string     | null: false       | #番地
 | building    | string     |                   | #建物名
 | phone       | string     | null: false       | #電話番号

@@ -8,6 +8,9 @@ require("@rails/activestorage").start()
 require("channels")
 require("../item_price");   //JavaScriptファイルの読み込み
 
+require("../card")          //トークン化を行うファイル
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
