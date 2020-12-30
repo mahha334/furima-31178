@@ -11,12 +11,15 @@ class Item < ApplicationRecord
   belongs_to :area  # 追加部分
   belongs_to :shipping  # 追加部分
 
+
   # 共通したオプションをまとめる記述
+
 with_options presence: true do
   # 空の投稿を保存できないようにする
       validates :price 
       validates :product
       validates :description
+
       validates :image
     end
 # プルダウンの選択で「--」の時は保存できないようにする
@@ -37,5 +40,6 @@ with_options numericality: { other_than: 0 }  do
   has_one_attached :image # アクティブストレージ（拡張子以外のファイル名のみ指定）
   
 end
+
 
 
