@@ -29,17 +29,19 @@ class ItemsController < ApplicationController
     
   end
 
-  def edit 
-      # 「商品に紐付いた購入履歴があったらトップページに遷移する」という条件もeditアクションに追加しましょう。
-    if @item.purchase.present?    
-      redirect_to root_path     
-    end       
-    
-    unless current_user == @item.user
-     redirect_to root_path
-
-    end
-  end
+  def edit  # 「商品に紐付いた購入履歴があったらトップページに遷移する」という条件もeditアクションに追加。 
+    # ①ログイン＆購入済み商品選択した場合、②ログイン者＝出品者でもログイン者≠出品者でなくても、トップへ（出品者と非出品者の場合に区別）
+     # ③ログイン者≠出品者で、非購入ならトップへ
+    # 出品者とログイン者が同じで、購入済の編集画面URLを入力したらトップへ 
+    if user_signed_in? && @item.purchase.present?     # ログインしている＆売却済み商品選択
+      #redirect_to root_path   
+       # 出品者とログイン者が異なるなら編集画面に行かないので編集画面URL入力しても飛ばない    
+       #unless current_user.id == @item.user_id # ログイン者 ≠ 出品者
+        redirect_to root_path  
+       #end  
+    end  
+     
+  end  # ログイン≠出品者なのに出品者の商品編集画面にいける！→出品者＝ログイン者なら編集画面に飛ぶので、出品者≠ログイン者は即トップへ
 
   def update
 

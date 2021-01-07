@@ -1,10 +1,10 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  #validates :password, on: :create #←createつまり保存の時のみonにします。#
-  validates :nickname, presence: true
-  validates :name, presence: true
-
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
+  
 # 共通したオプションをまとめる記述
 with_options presence: true do
   # ニックネーム・生年月日はオプション必要ないのでこのままの設定。
